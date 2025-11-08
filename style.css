@@ -1,0 +1,204 @@
+/* ====== Light Theme — ICT Portfolio (clean & accessible) ====== */
+
+/* Professional palette (neutral + confident blue accents) */
+:root{
+  --bg: #ffffff;
+  --surface: #f7f9fc;       /* subtle section bg */
+  --text: #111318;          /* near-black for readability */
+  --muted: #6b7280;         /* gray-500 */
+  --primary: #0d6efd;       /* Bootstrap primary for consistency */
+  --primary-600: #0a58ca;   /* darker hover state */
+  --border: #e6e9ef;
+  --ring: rgba(13,110,253,.25);
+}
+
+/* Base */
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links & focus */
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible{ outline: 3px solid var(--ring); outline-offset: 2px; }
+
+/* Navbar */
+.navbar{
+  backdrop-filter: saturate(120%) blur(6px);
+}
+.navbar .navbar-brand { letter-spacing: .2px; }
+.brand-dot{ color: var(--primary); }
+
+/* Hero */
+.hero{
+  background: radial-gradient(1200px 500px at 0% 0%, #eef4ff 0%, transparent 60%),
+              linear-gradient(180deg, var(--surface), #fff 60%);
+  border-bottom: 1px solid var(--border);
+}
+.hero .lead{ color: var(--muted); }
+
+/* Gradient name in H1 */
+.gradient-text{
+  background: linear-gradient(90deg, #0d6efd 0%, #6a5acd 60%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Avatar */
+.hero-avatar{
+  width: 220px; height: 220px; object-fit: cover;
+  border: 6px solid #fff; outline: 1px solid var(--border);
+}
+
+/* Sections */
+section{ scroll-margin-top: 84px; }
+.bg-body-tertiary{ background: var(--surface) !important; }
+
+/* Cards */
+.card{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.card-img-top{
+  aspect-ratio: 16/9; object-fit: cover;
+}
+.card .text-secondary{ color: var(--muted) !important; }
+.card-footer{
+  background: #fff;
+  border-top: 1px solid var(--border);
+}
+
+/* Small utilities */
+.stack-badges{ display: flex; flex-wrap: wrap; gap: .4rem; }
+.badge.text-bg-primary{
+  background: var(--primary) !important;
+}
+.border{ border-color: var(--border) !important; }
+.text-secondary{ color: var(--muted) !important; }
+
+/* Buttons: keep Bootstrap defaults but refine hover */
+.btn-primary{
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover{ background: var(--primary-600); border-color: var(--primary-600); }
+.btn-outline-dark{ border-color:#1f2937; color:#111318; }
+.btn-outline-dark:hover{ background:#111318; color:#fff; }
+
+/* Forms */
+.form-control, .form-select{
+  border-color: var(--border);
+}
+.form-control:focus, .form-select:focus{
+  box-shadow: 0 0 0 .25rem var(--ring);
+  border-color: var(--primary);
+}
+
+/* Footer */
+footer{ background: #fff; }
+footer .link-secondary{ color: var(--muted) !important; }
+footer .link-secondary:hover{ color: var(--primary) !important; }
+
+/* Smooth modal look on light */
+.modal-content{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* Make lists breathe */
+ul.small li{ margin-bottom: .35rem; }
+
+/* Ensure icons align nicely with text */
+.bi{ vertical-align: -.1em; }
+/* Animated hero background using your cyber banner (Ken Burns style) */
+.animated-hero{
+  position: relative;
+  min-height: 56vh;                 /* adjust height as you like */
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid #e6e9ef; /* matches your light theme */
+}
+
+/* Background layer */
+.animated-hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    image-set(
+      url("hero-bg-2400w.webp") type("image/webp") 2x,
+      url("hero-bg-1600w.webp") type("image/webp") 1x
+    );
+  /* Fallback for older browsers */
+  background-image: url("hero-bg-1600w.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transform: scale(1.08);
+  animation: hero-kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Readability overlay (left-to-right soft gradient) */
+.animated-hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(1200px 500px at 0% 0%, rgba(13,110,253,.10), transparent 60%),
+    linear-gradient(90deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.55) 35%, rgba(255,255,255,.25) 55%, rgba(255,255,255,0) 80%);
+  pointer-events:none;
+}
+
+/* Smooth zoom + drift */
+@keyframes hero-kenburns{
+  0%   { transform: scale(1.08) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
+  100% { transform: scale(1.10) translate3d(1%, 1.5%, 0); }
+}
+
+/* Keep your hero content above the background layers */
+.animated-hero > *{
+  position: relative;
+  z-index: 1;
+}
+.social-links a {
+  color: #212529; /* neutral readable black text */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Facebook icon colour */
+.facebook-icon {
+  color: #1877F2; /* Facebook blue */
+}
+
+/* Instagram gradient icon */
+.instagram-icon {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Email icon colour */
+.email-icon {
+  color: #7f19ff; /* yahoo purple */
+}
+
+/* Hover effect */
+.social-links li:hover i {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
